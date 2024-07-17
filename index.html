@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a4e69;
+            --secondary-color: #9a8c98;
+            --accent-color: #c9ada7;
+            --text-color: #f2e9e4;
+            --background-color: #22223b;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--primary-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header a {
+            color: var(--text-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+        }
+
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        .highlight,
+        header .current a {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        #showcase {
+            min-height: 400px;
+            background: linear-gradient(rgba(34, 34, 59, 0.7), rgba(34, 34, 59, 0.7)), url('your-background-image.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #showcase h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #showcase p {
+            font-size: 1.5rem;
+        }
+
+        #about,
+        #skills,
+        #projects,
+        #contact,
+        #experience {
+            padding: 2rem 0;
+            margin-top: 1rem;
+            background: var(--primary-color);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-weight: 600;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        #profile-pic {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-details {
+            font-style: italic;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            padding-left: 20px;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        .project {
+            background: var(--primary-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary-color);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .project:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animation classes */
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(-25%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .5;
+            }
+        }
+
+
+
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--accent-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: var(--accent-color);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Portfolio</span> </h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container">
+            <h1 class="animate-bounce">Sarthak Mithaulia</h1>
+            <p class="typewriter">Software Developer | Problem Solver | Tech Enthusiast</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <img src="PERSONAL.jpeg.jpeg" alt="Sarthak Mithaulia" id="profile-pic" class="animate-pulse">
+            <p>Skilled software developer with expertise in Python programming, specializing in data manipulation and
+                web scraping using BeautifulSoup (BS4), pandas, and NumPy. Proficient in both SQL (MySQL) and NoSQL
+                (MongoDB) databases. Solid foundation in frontend technologies (HTML, CSS) and familiar with pipeline
+                processes. Background in cybersecurity with coursework and internship experience in cryptocurrency
+                forensics. Combines development skills with security awareness to create efficient, secure, and scalable
+                solutions. Strong problem-solver with diverse technical knowledge, capable of tackling complex coding
+                challenges and streamlining workflows. Versatile asset to tech-driven teams, adept at delivering robust
+                applications across various domains.
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skill-list">
+                <div class="skill-item animate-spin">
+                    <i class="fas fa-copyright"></i>
+                    <span>C</span>
+                </div>
+                <div class="skill-item animate-spin">
+                    <i class="fas fa-code"></i>
+                    <span>C++</span>
+                </div>
+                <div class="skill-item animate-spin">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-item animate-spin">
+                    <i class="fab fa-java"></i>
+                    <span>Java</span>
+                </div>
+                <div class="skill-item animate-spin">
+                    <i class="fas fa-database"></i>
+                    <span>MySQL</span>
+                </div>
+                <div class="skill-item animate-spin">
+                    <i class="fas fa-leaf"></i>
+                    <span>MongoDB</span>
+                </div>
+                <div class="skill-item animate-spin">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </div>
+                <div class="skill-item animate-spin">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML</span>
+                </div>
+                <div class="skill-item animate-spin">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Project Intern</h3>
+                <p class="experience-details">Blockstash, Kanpur Nagar, Uttar Pradesh | January 2024 - February 2024</p>
+                <ul>
+                    <li>1.Contributed to a blockchain forensics project for cryptocurrency scam prevention</li>
+                    <li>2.Developed Python scripts with BeautifulSoup for web scraping and data processing</li>
+                    <li>3.Utilized MongoDB for large dataset management</li>
+                    <li>4.Implemented API testing with Postman and created data pipelines for efficient information flow
+                    </li>
+                    <li>5.Conducted data analysis and reporting using MS Excel</li>
+                    <li>6.Gained experience in blockchain technology and forensic analysis</li>
+                    <li>7.Enhanced skills in Python, web scraping, data manipulation, and JSON handling
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Internship Tasks</h3>
+                <p><strong>GitHub Repository:</strong> <a href="https://github.com/sarthakmithaulia/Internship-Tasks"
+                        target="_blank">https://github.com/sarthakmithaulia/Internship-Tasks</a></p>
+
+                <p>1.Developed an app to educate users about online and crypto scams</p>
+                <p> 2.Implemented Python web scraping to collect data from multiple websites</p>
+                <p> 3.Processed and structured data into JSON format for app integration</p>
+                <p>4.Contributed to user-friendly interface design for effective information presentation
+
+                </p>
+            </div>
+            <div class="project">
+
+
+                <h3>My Digital CV</h3>
+                <p><strong>Live Demo:</strong> <a href="https://myportfolioask.netlify.app/"
+                        target="_blank">https://myportfolioask.netlify.app/</a></p>
+                <p><strong>GitHub Repository:</strong> <a href="https://github.com/sarthakmithaulia/portfolio"
+                        target="_blank">https://github.com/sarthakmithaulia/portfolio</a></p>
+                <p>1. I developed a responsive,single-page portfolio website using HTML,CSS AND FontAwesome.</p>
+                <p>2.Utilized custom CSS variables for consistent styling and modern design principles with incorporated
+                    hover effects and smooth transitions for enhanced user experience.</p>
+                <p>3.It showcases my technical skills, work experience and project details in an organized manner.
+
+                </p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Email: sarthakmithaulia04505@gmail.com</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/sarthak-mithaulia9008"
+                    target="_blank">www.linkedin.com/in/sarthak-mithaulia9008</a></p>
+            <p>GitHub: <a href="https://github.com/sarthakmithaulia"
+                    target="_blank">https://github.com/sarthakmithaulia</a></p>
+            <a href="https://yellow-anne-18.tiiny.site" class="btn" download>Download Resume</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Sarthak Mithaulia. All rights reserved.</p>
+    </footer>
+</body>
+
+</html
